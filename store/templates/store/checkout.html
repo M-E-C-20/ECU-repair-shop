@@ -78,7 +78,7 @@
 
     <script type="text/javascript">
         let shipping = '{{ order.shipping }}'
-        let total = '{{ order.get_cart_total|floatformat:2 }}'
+        let total = '{{ order.get_cart_total }}'
         let form = document.getElementById('form')
 
         if (shipping == 'False') {
