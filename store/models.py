@@ -47,7 +47,7 @@ class Order(models.Model):
         orderitems = self.orderitem_set.all()
         # allow shipping if product is a physical item
         for i in orderitems:
-            if i .product.digital == False:
+            if i.product.digital == False:
                 shipping = True
         return shipping
 
@@ -67,7 +67,7 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, blank=True)
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
@@ -80,7 +80,7 @@ class OrderItem(models.Model):
 
 
 class ShippingAddress(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     address = models.CharField(max_length=254, null=False)
     city = models.CharField(max_length=254, null=False)
